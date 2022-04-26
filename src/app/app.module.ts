@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ClienteComponent } from './clientes/cliente/cliente.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/clientes', pathMatch: 'full' },
+  { path: 'clientes', component: ClienteComponent },
+];
 
 @NgModule({
   declarations: [
@@ -15,6 +21,7 @@ import { ClienteComponent } from './clientes/cliente/cliente.component';
   ],
   imports: [
     BrowserModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [],
   bootstrap: [AppComponent]
