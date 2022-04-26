@@ -13,6 +13,7 @@ import { FormComponent } from './clientes/form/form.component';
 const routes: Routes = [
   { path: '', redirectTo: '/clientes', pathMatch: 'full' },
   { path: 'clientes', component: ClienteComponent },
+  { path: 'clientes/form', component: FormComponent },
 ];
 
 @NgModule({
