@@ -3,8 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../interfaces/cliente.interface';
 import { ClienteService } from '../services/cliente.service';
 
-
-
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
@@ -17,7 +15,8 @@ export class ClienteComponent implements OnInit {
   constructor(private clienteService: ClienteService) { }
 
   ngOnInit(): void {
-    this.clientes = this.clienteService.getClientes();
+    this.clienteService.getClientes()
+      .subscribe(clientes => this.clientes = clientes);
   }
 
 }
