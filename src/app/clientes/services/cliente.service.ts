@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of, catchError, throwError, map } from 'rxjs';
+import { Observable, of, catchError, throwError, map, tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
@@ -26,7 +26,8 @@ export class ClienteService {
   getClientes(): Observable<Cliente[]> {
     //return of(CLIENTES)
     return this.http.get<Cliente[]>(this.urlEndPoint)
-      .pipe(
+    .pipe(
+        tap((clientes: Cliente[]) => console.log(clientes)),
         map((clientes: Cliente[]) => clientes.map((cliente: Cliente) => {
           cliente.nombre = cliente.nombre?.toUpperCase();
           // cliente.createAt = formatDate(cliente.createAt!, 'EEEE dd, MMM yyyy', 'en-US');
