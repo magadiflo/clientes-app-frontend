@@ -24,7 +24,13 @@ export class ClienteService {
 
   getClientes(): Observable<Cliente[]> {
     //return of(CLIENTES)
-    return this.http.get<Cliente[]>(this.urlEndPoint);
+    return this.http.get<Cliente[]>(this.urlEndPoint)
+      .pipe(
+        map((clientes: Cliente[]) => clientes.map((cliente: Cliente) => {
+          cliente.nombre = cliente.nombre?.toUpperCase();
+          return cliente;
+        }))
+      );
   }
 
   create(cliente: Cliente): Observable<Cliente> {
