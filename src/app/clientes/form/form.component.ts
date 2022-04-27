@@ -27,7 +27,7 @@ export class FormComponent implements OnInit {
   cargarCliente(): void {
     this.activatedRoute.params
       .subscribe(({ id }) => {
-        if(id){
+        if (id) {
           this.clienteService.getCliente(id)
             .subscribe(cliente => this.cliente = cliente);
         }
@@ -35,6 +35,7 @@ export class FormComponent implements OnInit {
   }
 
   create(): void {
+    this.validaCampos();
     this.clienteService.create(this.cliente)
       .subscribe(cliente => {
         this.router.navigate(['/clientes']);
@@ -49,6 +50,7 @@ export class FormComponent implements OnInit {
   }
 
   update(): void {
+    this.validaCampos();
     this.clienteService.update(this.cliente)
       .subscribe(cliente => {
         this.router.navigate(['/clientes']);
@@ -60,6 +62,15 @@ export class FormComponent implements OnInit {
           timer: 1500
         });
       });
+  }
+
+  validaCampos() {
+    if (this.cliente.nombre?.trim() === '') {
+      delete this.cliente.nombre;
+    }
+    if (this.cliente.email?.trim() === '') {
+      delete this.cliente.email;
+    }
   }
 
 }

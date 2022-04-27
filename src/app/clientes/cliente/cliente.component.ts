@@ -19,7 +19,7 @@ export class ClienteComponent implements OnInit {
   ngOnInit(): void {
     this.cargarClientes();
   }
-  
+
   cargarClientes(): void {
     this.clienteService.getClientes()
       .subscribe(clientes => this.clientes = clientes);
@@ -34,9 +34,9 @@ export class ClienteComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.clienteService.delete(cliente.id!)
-          .subscribe(data => {  
+          .subscribe(mensaje => {
             this.cargarClientes();
-            Swal.fire('Cliente Eliminado', `${cliente.nombre} eliminado con éxito!`, 'success');
+            Swal.fire('Cliente Eliminado', `(${cliente.nombre}) ${mensaje}`, 'success');
           });
       }
     })
