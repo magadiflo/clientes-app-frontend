@@ -1,6 +1,11 @@
 <div class="container mt-3">
     <h2 class="text-center my-3">Listado de clientes</h2>
-    <div class="card">
+    <div *ngIf="clientes.length  == 0" class="alert alert-info">
+        <h5 class="cart-title">No hay clientes para mostrar 
+            <button type="button" [routerLink]="['/clientes', 'form']" class="btn btn-sm btn-primary">Nuevo cliente</button>
+        </h5>
+    </div>
+    <div *ngIf="clientes.length > 0" class="card">
         <div class="card-body">
             <table class="table table-striped table-hover">
                 <thead>
