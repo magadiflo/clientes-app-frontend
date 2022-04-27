@@ -2,7 +2,7 @@
     <h2 class="text-center my-3">{{ titulo }}</h2>
     <div class="card">
         <div class="card-body">
-            <form (ngSubmit)="create()">
+            <form>
                 <div class="mb-3">
                     <label for="nombre" class="form-label">Nombre</label>
                     <input type="text" class="form-control" id="nombre" name="nombre" [(ngModel)]="cliente.nombre">
@@ -15,7 +15,8 @@
                     <label for="email" class="form-label">Email</label>
                     <input type="text" class="form-control" id="email" name="email" [(ngModel)]="cliente.email">
                 </div>
-                <button type="submit" class="btn btn-primary">Crear</button>
+                <button type="button" (click)="create()" *ngIf="!cliente.id" class="btn btn-primary">Crear</button>
+                <button type="button" (click)="update()" *ngIf="cliente.id" class="btn btn-warning">Actualizar</button>
             </form>
         </div>
     </div>

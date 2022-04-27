@@ -48,4 +48,18 @@ export class FormComponent implements OnInit {
       });
   }
 
+  update(): void {
+    this.clienteService.update(this.cliente)
+      .subscribe(cliente => {
+        this.router.navigate(['/clientes']);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'info',
+          title: `Cliente ${cliente.nombre} actualizado con éxito!`,
+          showConfirmButton: false,
+          timer: 1500
+        });
+      });
+  }
+
 }
